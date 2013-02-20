@@ -6,24 +6,24 @@
         android:showAsAction="never"
         android:title="@string/menu_settings"/>
     
-<!--         <item
+	<item
         android:id="@+id/menu_play"
-        android:orderInCategory="1"
+        android:orderInCategory="3"
         android:title="Play"
         android:showAsAction="ifRoom"/>
-        android:icon="@android:drawable/ic_media_play"/>
+        <!-- android:icon="@android:drawable/ic_media_play"/> -->
    
-     -->
+
     <item
         android:id="@+id/menu_pause"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         android:title="Pause"
         android:showAsAction="ifRoom" />
        <!--  android:icon="@android:drawable/ic_media_pause" /> -->
     
     <item
         android:id="@+id/menu_stop"
-        android:orderInCategory="3"
+        android:orderInCategory="2"
         android:title="Stop"
         android:showAsAction="ifRoom" />
         <!-- android:icon="@android:drawable/ic_media_stop" /> -->

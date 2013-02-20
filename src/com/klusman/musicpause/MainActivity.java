@@ -10,7 +10,9 @@ import java.util.Iterator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 
+
 import android.app.ListActivity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,15 +34,18 @@ public class MainActivity extends ListActivity {
 	Button audio;
 	MediaPlayer mp = new MediaPlayer();
 
+	
+	
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		
 		updatePlayList();
 		mySongsArray = songs.toArray(new String[songs.size()]);
-
-		setListAdapter(new myArrayAdapter(this, mySongsArray));
-	
+		setListAdapter(new myArrayAdapter(this, mySongsArray));	
 	}  // END onCreate
 
 	
@@ -56,11 +61,9 @@ public class MainActivity extends ListActivity {
     			//String name = itr.next().getName(); // Works to show song title in tab
     			String name = itr.next().getPath();  // works to show song path in tab
     			songs.add(name);   			
-    		   // Log.i("SONG", name);
-    		} // End Iterator
-    		
-    		Log.i("# of Songs", String.valueOf(files.size()));
-
+    		   
+    		} // End Iterator   		
+    		//Log.i("# of Songs", String.valueOf(files.size()));
     	}else{
     		Log.i("Songs", "No Songs Found");
     	}  // End IF
@@ -77,11 +80,9 @@ public class MainActivity extends ListActivity {
 		Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
 		String newURI = selectedValue;
 		Uri uri;
-		try {
-			
+		try {		
 			uri = Uri.parse(newURI);
-			mp = MediaPlayer.create(MainActivity.this , uri);
-			
+			mp = MediaPlayer.create(MainActivity.this , uri);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -89,23 +90,18 @@ public class MainActivity extends ListActivity {
 		if(mp.isPlaying()){
 			mp.pause();
 		}else{
-			mp.start();
-			
+			mp.start();			
 		}
-
-
-	}
-	
+	}  //  END onListItemClicked
 	
 
 	
 ////OPTIONS MENU  
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
-	}// end onCreateOptionsMenu
+	} // END onCreateOptionsMenu
 	
 	
 	@Override
@@ -115,16 +111,20 @@ public class MainActivity extends ListActivity {
 			case R.id.menu_pause:
 					if(mp.isPlaying()){
 						mp.pause();
-
 					}else{
 						mp.start();
-
 					}
 				break;
+				
 			case R.id.menu_stop:
 				mp.stop();
 				break;
+				
+			case R.id.menu_settings:
+				Intent intent = new Intent(this, SettingsActivity.class);
+				startActivity(intent);  
+				break;
 		}
 		return super.onMenuItemSelected(featureId, item);
-	}
+	}  //  END onMenuItemSelected
 }

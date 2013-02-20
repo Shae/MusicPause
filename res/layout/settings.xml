@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@android:color/black">
+
+    <CheckBox
+        android:id="@+id/checkBoxProx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Proximity Detection (for pause)" 
+        android:textColor="@android:color/white"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxPauseNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pause Notification Reminders" 
+        android:textColor="@android:color/white"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxBat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Battery Monitoring" 
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

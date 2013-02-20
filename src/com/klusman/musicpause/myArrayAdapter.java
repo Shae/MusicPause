@@ -1,12 +1,10 @@
 package com.klusman.musicpause;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class myArrayAdapter extends ArrayAdapter<String>{
@@ -30,8 +28,8 @@ public class myArrayAdapter extends ArrayAdapter<String>{
 		textView.setText(values[position]);
  
 		// Change icon based on name
-		String s = values[position];
-		Log.i("SONG", s);
+		//String s = values[position];
+		//Log.i("SONG", s);
 		return rowView;
 	}
 }
