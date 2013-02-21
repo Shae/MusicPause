@@ -65,14 +65,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-           <!--  <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Music Currently Playing"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" /> -->
+           
             
              <LinearLayout
                 android:layout_width="236dp"
@@ -82,7 +75,7 @@
                 android:gravity="center"
                 android:orientation="horizontal" >
 
-                <Button
+               <!--  <Button
                     android:id="@+id/prevBtn"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
@@ -112,8 +105,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/ic_media_next"
-                    android:enabled="true" />
-
+                    android:enabled="true" /> -->
+			 	<TextView
+			 	    android:id="@+id/storageCountText"
+               		android:layout_width="fill_parent"
+                	android:layout_height="wrap_content"
+                	android:layout_gravity="center"
+                	android:gravity="center"
+                	android:text="Songs in Storage"
+                	android:textColor="@android:color/white"
+                	android:textSize="15sp" />
             </LinearLayout> 
         </LinearLayout>
         
