@@ -55,28 +55,41 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        sensorReg();
-		updatePlayList();
+        
+        
+        sensorReg();  // Register the sensor for audioPause
+		updatePlayList();  // prep the list view
 		mySongsArray = songs.toArray(new String[songs.size()]);
 		setListAdapter(new myArrayAdapter(this, mySongsArray));	
 	}  // END onCreate
 
 	
 	
-	
+// MUSIC LIST HANDLING	
 	private void updatePlayList(){
 
 		Collection<File> files = FileUtils.listFiles(path,TrueFileFilter.INSTANCE,TrueFileFilter.INSTANCE);
     	if(files != null){
     		
+    		Iterator<File> itr2 = files.iterator(); 
+    		while(itr2.hasNext()) {
+    			String name = itr2.next().getName(); // Works to show song title in tab
+    			//String sPath = itr.next().getPath();  // works to show song path in tab
+    			//Log.i("PATH", name);
+    			songs.add(name);   			
+    		   
+    		} // End Iterator 
+    		
     		Iterator<File> itr = files.iterator(); 
     		while(itr.hasNext()) {
     			//String name = itr.next().getName(); // Works to show song title in tab
     			String sPath = itr.next().getPath();  // works to show song path in tab
-    			songs.add(sPath);   			
-    		   
-    		} // End Iterator   		
+    			Log.i("PATH", sPath);
+    			//songs.add(sPath);   			
+    			songsPath.add(sPath);
+    		} // End Iterator 
     		
+
     	}else{
     		Log.i("Songs", "No Songs Found");
     	}  // End IF
@@ -89,7 +102,8 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 			mp.stop();
 		}
 		
-		String selectedValue = (String) getListAdapter().getItem(position);
+		//String selectedValue = (String) getListAdapter().getItem(position);
+		String selectedValue = (String) songsPath.get(position);
 		Toast.makeText(this, selectedValue, Toast.LENGTH_SHORT).show();
 		String newURI = selectedValue;
 		Uri uri;
@@ -106,7 +120,6 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 			mp.start();			
 		}
 	}  //  END onListItemClicked
-	
 
 	
 ////OPTIONS MENU  
@@ -143,13 +156,12 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 		return super.onMenuItemSelected(featureId, item);
 	}  //  END onMenuItemSelected
 	
-	
+//// AUDIO STUFF	
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		
 	}
 
-	
 	
 	@Override
 	public void onSensorChanged(SensorEvent event) {
@@ -160,13 +172,13 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 		}
 		
 	}
+
 	
 	public void stopMusic(){
 		mp.stop();
 		
 	}
-    
-
+ 
 	
 	private void sensorReg(){
         /////////// PROX
@@ -180,6 +192,7 @@ public class MainActivity extends ListActivity implements SensorEventListener{
         	Log.i("SENSOR", "prox registered");
         } 
 	}
+	
 	
 	public void checkProx(){
 		if(x == 0.0){  // proximity - close
@@ -195,7 +208,8 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 			myToast("play");
 		}
 	}
-	
+
+//// OTHER	
 	public void myToast(String text){  // Toast Template
 		CharSequence textIN = text;
 		int duration = Toast.LENGTH_SHORT;
@@ -203,4 +217,6 @@ public class MainActivity extends ListActivity implements SensorEventListener{
 		toast.setGravity(Gravity.BOTTOM, 0, 0);
 		toast.show();
 	};// end myToast
-}
+	
+	
+}  // END MAIN
