@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <!-- <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        >
+
+       
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+        
+    </LinearLayout> -->
+	        
+    	<!--  <LinearLayout
+    	     android:layout_width="wrap_content"
+    	     android:layout_height="wrap_content"
+    	     android:orientation="horizontal"
+    	     android:weight="1" >
+        
+      	   <ImageView
+      	      android:id="@+id/imageView1"
+      	      android:layout_width="wrap_content"
+      	      android:layout_height="wrap_content"
+       	     android:src="@drawable/ic_launcher" />
+    	</LinearLayout>
+
+    	 <LinearLayout
+    	     android:layout_width="wrap_content"
+    	     android:layout_height="match_parent"
+    	     android:orientation="horizontal"
+    	     android:weight="2" >
+
+    	     
+    	 </LinearLayout> -->
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:columnCount="3"
+        android:useDefaultMargins="true" >
+
+        <LinearLayout
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="MusicPauseWidget"
+                android:textColor="@color/Lime"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+           <!--  <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Music Currently Playing"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" /> -->
+            
+             <LinearLayout
+                android:layout_width="236dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.66"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/prevBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/ic_media_previous"
+                    android:enabled="true" />
+
+                <Button
+                    android:id="@+id/pauseBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/ic_media_pause"
+                    android:enabled="true" />
+
+                <Button
+                    android:id="@+id/playBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/ic_media_play"
+                    android:enabled="true" />
+
+                <Button
+                    android:id="@+id/nextBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/ic_media_next"
+                    android:enabled="true" />
+
+            </LinearLayout> 
+        </LinearLayout>
+        
+  		<LinearLayout
+  		    android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@color/aqua">
+  		    
+  		</LinearLayout>
+  		
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_column="2"
+            android:layout_columnSpan="1"
+            android:layout_gravity="center"
+            android:layout_row="0"
+            android:gravity="center"
+            android:orientation="vertical" >
+            
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_launcher" />
+
+        </LinearLayout>
+
+    </GridLayout>
+
+</FrameLayout>

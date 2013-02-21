@@ -119,7 +119,9 @@ public class MainActivity extends ListActivity {
 			case R.id.menu_stop:
 				mp.stop();
 				break;
-				
+			case R.id.menu_play:
+				mp.start();
+				break;
 			case R.id.menu_settings:
 				Intent intent = new Intent(this, SettingsActivity.class);
 				startActivity(intent);  

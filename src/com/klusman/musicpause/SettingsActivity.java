@@ -3,7 +3,6 @@ package com.klusman.musicpause;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,11 +39,11 @@ public class SettingsActivity extends Activity{
 		SharedPreferences.Editor editor = prefs.edit(); 
 		
 		editor.putBoolean("PROX", prox.isChecked());
-		Log.i("checkProx save", String.valueOf(checkProx));
+		//Log.i("checkProx save", "");
 		editor.putBoolean("NOTE", note.isChecked());
-		Log.i("checkNote save", String.valueOf(checkNote));
+		//Log.i("checkNote save", String.valueOf(checkNote));
 		editor.putBoolean("BATT", batt.isChecked());
-		Log.i("checkBatt save", String.valueOf(checkBatt));
+		//Log.i("checkBatt save", String.valueOf(checkBatt));
 		editor.commit(); 
 	}  // END saveSettings
 	
@@ -83,9 +82,9 @@ public class SettingsActivity extends Activity{
 
 			case R.id.menu_back:
 				saveSettings();
-				Intent next = new Intent(this, MainActivity.class);
-				startActivity(next);
-				//super.onBackPressed();
+//				Intent next = new Intent(this, MainActivity.class);
+//				startActivity(next);
+				super.onBackPressed();
 				break;
 		
 		}
