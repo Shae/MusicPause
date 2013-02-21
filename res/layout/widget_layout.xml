@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="MusicPauseWidget"
+                android:text="AudioPause"
                 android:textColor="@color/Lime"
                 android:textSize="20sp"
                 android:textStyle="bold" />

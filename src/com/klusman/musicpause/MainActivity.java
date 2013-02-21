@@ -12,12 +12,18 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,13 +33,17 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends ListActivity implements SensorEventListener{
 	private File path = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_MUSIC);  //works
 	private ArrayList<String> songs = new ArrayList<String>();
 	private ArrayList<String> songsPath = new ArrayList<String>();
 	private String[] mySongsArray;
 	Button audio;
 	MediaPlayer mp = new MediaPlayer();
+	private SensorManager sensorManager;
+	private Sensor proximitySensor;
+	boolean paused = false;
+	double x;
 
 	
 	
@@ -43,7 +53,9 @@ public class MainActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		
+		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        sensorReg();
 		updatePlayList();
 		mySongsArray = songs.toArray(new String[songs.size()]);
 		setListAdapter(new myArrayAdapter(this, mySongsArray));	
@@ -130,4 +142,65 @@ public class MainActivity extends ListActivity {
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}  //  END onMenuItemSelected
+	
+	
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		
+	}
+
+	
+	
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		if(event.sensor == proximitySensor)
+		{
+			x = event.values[0];			
+				checkProx();
+		}
+		
+	}
+	
+	public void stopMusic(){
+		mp.stop();
+		
+	}
+    
+
+	
+	private void sensorReg(){
+        /////////// PROX
+        if (proximitySensor == null)
+        {
+        	myToast("No Proximity Sensor Found");
+        }
+        else
+        {
+        	sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+        	Log.i("SENSOR", "prox registered");
+        } 
+	}
+	
+	public void checkProx(){
+		if(x == 0.0){  // proximity - close
+			if(mp.isPlaying()){
+				mp.pause();
+				paused = true;
+				//runTimer();
+				myToast("paused");						
+			}
+		}else{  // proximity - far
+			mp.start();
+			paused = false;
+			myToast("play");
+		}
+	}
+	
+	public void myToast(String text){  // Toast Template
+		CharSequence textIN = text;
+		int duration = Toast.LENGTH_SHORT;
+		Toast toast = Toast.makeText(MainActivity.this, textIN, duration);
+		toast.setGravity(Gravity.BOTTOM, 0, 0);
+		toast.show();
+	};// end myToast
 }
