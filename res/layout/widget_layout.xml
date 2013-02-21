@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="@color/black">
     <!-- <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +45,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
+        
         android:columnCount="3"
         android:useDefaultMargins="true" >
 
@@ -65,7 +66,14 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-           
+            <TextView
+                android:id="@+id/TextActive"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="ACTIVE"
+                android:textColor="@color/red"
+                android:textSize="15sp" />
             
              <LinearLayout
                 android:layout_width="236dp"
@@ -73,7 +81,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.66"
                 android:gravity="center"
-                android:orientation="horizontal" >
+                android:orientation="vertical" >
 
                <!--  <Button
                     android:id="@+id/prevBtn"
@@ -106,15 +114,18 @@
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/ic_media_next"
                     android:enabled="true" /> -->
+
 			 	<TextView
 			 	    android:id="@+id/storageCountText"
-               		android:layout_width="fill_parent"
-                	android:layout_height="wrap_content"
-                	android:layout_gravity="center"
-                	android:gravity="center"
-                	android:text="Songs in Storage"
-                	android:textColor="@android:color/white"
-                	android:textSize="15sp" />
+			 	    android:layout_width="wrap_content"
+			 	    android:layout_height="wrap_content"
+			 	    android:layout_gravity="center"
+			 	    android:gravity="center"
+			 	    android:text="Songs in Storage"
+			 	    android:textColor="@android:color/white"
+			 	    android:textSize="15sp" />
+			 	
+			 	
             </LinearLayout> 
         </LinearLayout>
         

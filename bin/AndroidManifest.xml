@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="17" />
+     <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -35,6 +36,7 @@
                 android:resource="@xml/music_pause_widget"/>
         </receiver>
 		<service android:name=".widgetService" android:enabled="true" />
+		<service android:name=".pauseService" android:enabled="true" />
     </application>
 
 </manifest>
