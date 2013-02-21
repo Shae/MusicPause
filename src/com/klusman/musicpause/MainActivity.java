@@ -30,6 +30,7 @@ import android.widget.Toast;
 public class MainActivity extends ListActivity {
 	private File path = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_MUSIC);  //works
 	private ArrayList<String> songs = new ArrayList<String>();
+	private ArrayList<String> songsPath = new ArrayList<String>();
 	private String[] mySongsArray;
 	Button audio;
 	MediaPlayer mp = new MediaPlayer();
@@ -59,11 +60,11 @@ public class MainActivity extends ListActivity {
     		Iterator<File> itr = files.iterator(); 
     		while(itr.hasNext()) {
     			//String name = itr.next().getName(); // Works to show song title in tab
-    			String name = itr.next().getPath();  // works to show song path in tab
-    			songs.add(name);   			
+    			String sPath = itr.next().getPath();  // works to show song path in tab
+    			songs.add(sPath);   			
     		   
     		} // End Iterator   		
-    		//Log.i("# of Songs", String.valueOf(files.size()));
+    		
     	}else{
     		Log.i("Songs", "No Songs Found");
     	}  // End IF
