@@ -14,6 +14,7 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -57,7 +58,8 @@ public class MainActivity extends ListActivity implements SensorEventListener{
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         
         
-        sensorReg();  // Register the sensor for audioPause
+        //sensorReg();  // Register the sensor for audioPause
+        settingsCheck();
 		updatePlayList();  // prep the list view
 		mySongsArray = songs.toArray(new String[songs.size()]);
 		setListAdapter(new myArrayAdapter(this, mySongsArray));	
@@ -181,19 +183,45 @@ public class MainActivity extends ListActivity implements SensorEventListener{
  
 	
 	private void sensorReg(){
-        /////////// PROX
-        if (proximitySensor == null)
-        {
-        	myToast("No Proximity Sensor Found");
-        }
-        else
-        {
-        	sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
-        	Log.i("SENSOR", "prox registered");
-        } 
+        
+			if (proximitySensor == null)
+			{
+				myToast("No Proximity Sensor Found");
+			}
+			else
+			{
+				sensorManager.registerListener(this, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+				Log.i("SENSOR", "prox registered");
+			} 
+		
+	}
+	
+	private void settingsCheck(){
+		boolean checkProx = true;
+		SharedPreferences prefs = getSharedPreferences("myprefs",Context.MODE_PRIVATE); 
+		checkProx = prefs.getBoolean("PROX", checkProx);
+		Log.i("checkProx VALUE", String.valueOf(prefs.getBoolean("PROX", checkProx)));
+		
+		if(checkProx == true){
+			sensorReg();
+		}else{
+			sensorManager.unregisterListener(this);
+		}
+		
 	}
 	
 	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		
+		settingsCheck();
+		
+		super.onResume();
+	}
+
+
+
 	public void checkProx(){
 		if(x == 0.0){  // proximity - close
 			if(mp.isPlaying()){
